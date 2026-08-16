@@ -1,0 +1,218 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Receba nossa oferta — Cadastre-se</title>
+    <meta
+      name="description"
+      content="Preencha o formulário e receba nossa oferta por e-mail e WhatsApp."
+    />
+    <style>
+      :root {
+        --bg: #0b1220;
+        --surface: #ffffff;
+        --ink: #0f172a;
+        --muted: #64748b;
+        --brand: #2563eb;
+        --brand-ink: #ffffff;
+        --border: #e2e8f0;
+        --ok: #16a34a;
+      }
+      * { box-sizing: border-box; }
+      body {
+        margin: 0;
+        font-family: "Segoe UI", system-ui, -apple-system, Roboto, Arial, sans-serif;
+        background: var(--bg);
+        color: var(--ink);
+        display: flex;
+        min-height: 100vh;
+        align-items: center;
+        justify-content: center;
+        padding: 16px;
+      }
+      .card {
+        width: 100%;
+        max-width: 460px;
+        background: var(--surface);
+        border-radius: 16px;
+        padding: 28px 24px;
+        box-shadow: 0 24px 60px rgba(0, 0, 0, 0.35);
+      }
+      .card h1 {
+        font-size: 22px;
+        margin: 0 0 6px;
+        line-height: 1.2;
+      }
+      .card p.sub {
+        margin: 0 0 20px;
+        color: var(--muted);
+        font-size: 14px;
+      }
+      label {
+        display: block;
+        font-size: 13px;
+        font-weight: 600;
+        margin: 0 0 6px;
+      }
+      .field { margin-bottom: 16px; }
+      input {
+        width: 100%;
+        font-size: 16px; /* >=16px evita zoom no iOS */
+        padding: 12px 14px;
+        border: 1px solid var(--border);
+        border-radius: 10px;
+        background: #fff;
+        color: var(--ink);
+        outline: none;
+      }
+      input:focus { border-color: var(--brand); box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15); }
+      button {
+        width: 100%;
+        border: 0;
+        border-radius: 10px;
+        background: var(--brand);
+        color: var(--brand-ink);
+        font-size: 16px;
+        font-weight: 700;
+        padding: 14px;
+        cursor: pointer;
+        transition: filter 0.15s;
+      }
+      button:hover { filter: brightness(1.08); }
+      button:disabled { opacity: 0.6; cursor: not-allowed; }
+      .success {
+        display: none;
+        text-align: center;
+        padding: 8px 0;
+      }
+      .success .check {
+        width: 56px; height: 56px;
+        border-radius: 50%;
+        background: var(--ok);
+        color: #fff;
+        font-size: 30px;
+        line-height: 56px;
+        margin: 0 auto 12px;
+      }
+      .legal {
+        margin-top: 16px;
+        font-size: 11px;
+        color: var(--muted);
+        text-align: center;
+        line-height: 1.4;
+      }
+      .legal a { color: var(--brand); }
+    </style>
+
+    <!-- Meta Pixel (substitua SEU_PIXEL_ID_AQUI pelo ID do seu Pixel) -->
+    <script>
+      !function(f,b,e,v,n,t,s)
+      {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+      n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+      if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+      n.queue=[];t=b.createElement(e);t.async=!0;
+      t.src=v;s=b.getElementsByTagName(e)[0];
+      s.parentNode.insertBefore(t,s)}(window, document,'script',
+      'https://connect.facebook.net/pt_BR/fbevents.js');
+      fbq('init', 'SEU_PIXEL_ID_AQUI');
+      fbq('track', 'PageView');
+    </script>
+    <noscript>
+      <img
+        height="1" width="1" style="display:none"
+        src="https://www.facebook.com/tr?id=SEU_PIXEL_ID_AQUI&ev=PageView&noscript=1"
+        alt=""
+      />
+    </noscript>
+  </head>
+  <body>
+    <main class="card" role="main">
+      <!-- Formulário: action vazio (endpoint vazio) para o mockup.
+           Em produção, aponte para o seu webhook/crm. -->
+      <form
+        id="lead-form"
+        action=""
+        method="post"
+        autocomplete="on"
+        novalidate
+      >
+        <h1>Receba nossa oferta</h1>
+        <p class="sub">Preencha os dados e entraremos em contato.</p>
+
+        <div class="field">
+          <label for="full_name">Nome completo</label>
+          <!-- name="full_name" e autocomplete="name" p/ preenchimento automático -->
+          <input
+            id="full_name" name="full_name" type="text"
+            autocomplete="name" placeholder="Seu nome" required
+          />
+        </div>
+
+        <div class="field">
+          <label for="email">E-mail</label>
+          <input
+            id="email" name="email" type="email" inputmode="email"
+            autocomplete="email" placeholder="voce@email.com" required
+          />
+        </div>
+
+        <div class="field">
+          <label for="phone">Telefone</label>
+          <input
+            id="phone" name="phone" type="tel" inputmode="tel"
+            autocomplete="tel" placeholder="(11) 99999-9999" required
+          />
+        </div>
+
+        <button type="submit" id="submit-btn">Quero receber a oferta</button>
+
+        <p class="legal">
+          Ao enviar, você concorda em ser contatado. Seus dados são tratados
+          conforme nossa <a href="#" rel="noopener">Política de Privacidade</a>.
+        </p>
+      </form>
+
+      <!-- Mensagem de sucesso (mostrada após o envio) -->
+      <div class="success" id="success" role="status" aria-live="polite">
+        <div class="check">✓</div>
+        <h1>Obrigado!</h1>
+        <p class="sub">Recebemos seu cadastro. Em breve entraremos em contato.</p>
+      </div>
+    </main>
+
+    <script>
+      (function () {
+        var form = document.getElementById('lead-form');
+        var success = document.getElementById('success');
+        var btn = document.getElementById('submit-btn');
+
+        form.addEventListener('submit', function (e) {
+          // Mockup: não enviamos os dados (endpoint vazio).
+          e.preventDefault();
+
+          // Validação simples nativa
+          if (!form.checkValidity()) {
+            form.reportValidity();
+            return;
+          }
+
+          // Dispara o evento padrão "Lead" do Meta Pixel (Lead Ads).
+          // O 2º argumento permite advanced matching (opcional).
+          if (typeof fbq === 'function') {
+            fbq('track', 'Lead', {
+              content_name: 'Formulario de Lead',
+              content_category: 'Lead Ad',
+              value: 0.0,
+              currency: 'BRL'
+            });
+          }
+
+          // Esconde o formulário e mostra o sucesso.
+          form.style.display = 'none';
+          success.style.display = 'block';
+        });
+      })();
+    </script>
+  </body>
+</html>
